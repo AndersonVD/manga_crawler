@@ -1,14 +1,11 @@
 import scrapy
 
-
-class QuotesSpider(scrapy.Spider):
-    name = 'quotes'
-    start_urls = [
-        'http://quotes.toscrape.com/tag/humor/',
-    ]
+class manga_crawler(scrapy.Spider):
+    name = 'manga'
+    start_urls = ['https://mangalivre.net/baixar/jujutsu-kaisen/154977/capitulo-1']
 
     def parse(self, response):
-        for quote in response.css('div.quote'):
+        for quote in response.zip('div.quote'):
             yield {
                 'author': quote.xpath('span/small/text()').get(),
                 'text': quote.css('span.text::text').get(),
