@@ -1,13 +1,10 @@
 # Python 3 code
 import urllib.request, urllib.parse, urllib.error
  
-url = 'http://www.carlissongaldino.com.br/modules/pubdlcnt/pubdlcnt.php?file=http://www.carlissongaldino.com.br/sites/default/files/o-fantasma-da-opera.pdf&nid=1287'
+url = 'https://mangalivre.net/baixar/jujutsu-kaisen/154977/capitulo-1'
  
 print("baixando com urllib")
-urllib.request.urlretrieve(url, "o-fantasma-da-opera-u.pdf")
+urllib.request.build_opener(url)
  
-print("baixando com urllib2")
-f = urllib.request.urlopen(url)
-data = f.read()
 with open("o-fantasma-da-opera-u2.pdf", "wb") as code:
-    code.write(data)
+    code.write()
