@@ -17,9 +17,9 @@ headers = {
 def search_page():
     url = "https://mangalivre.net/lib/search/series.json"
 
-    TERMO_BUSCA = "naruto"
+    TERMO_BUSCA = "mob psycho 100"
 
-    payload = f"search={TERMO_BUSCA}"
+    payload = f"search={TERMO_BUSCA.replace(' ', '+')}"
 
     response = requests.request("POST", url, data=payload, headers=headers)
     response = response.json()
@@ -63,7 +63,15 @@ if __name__ == "__main__":
     print("Busca realizada com sucesso!")
     chapter_list = chapter_list(page_content["series"][0]["id_serie"])
     print("Lista de capítulos obtida com sucesso!")
-    link_images = link_images(chapter_list[0]['releases']['_scan1']['id_release'])
+    scan = 1
+    scan_path = ""
+    while scan_path == "":
+        try:
+            scan_path = chapter_list[0]['releases'][f'_scan{scan}']['id_release']
+        except:
+            scan += 1
+    
+    link_images = link_images(scan_path)
     print("Lista de imagens obtida com sucesso!")
     dowload_images(link_images)
     print(link_images)
