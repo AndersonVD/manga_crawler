@@ -63,7 +63,7 @@ if __name__ == "__main__":
     print("Busca realizada com sucesso!")
     chapter_list = chapter_list(page_content["series"][0]["id_serie"])
     print("Lista de capítulos obtida com sucesso!")
-    link_images = link_images(chapter_list[2]["id_chapter"])
+    link_images = link_images(chapter_list[0]['releases']['_scan1']['id_release'])
     print("Lista de imagens obtida com sucesso!")
     dowload_images(link_images)
     print(link_images)
